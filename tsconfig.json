@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src", // to folder z ktorego bedziemy brac rzeczy do kompilacji
+        "outDir": "./dist", // po przekompilowaniu naszych plików, te pliki wylądują w tym folderze
+        "target": "ES2015" // kod TS skompiluje sie do JS w takiej postaci, żeby na każdej przeglądarce (starszej rowniez) ten kod zadziałał
+    }
+}

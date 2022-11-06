@@ -1,0 +1,20 @@
+{
+  "name": "array-methods",
+  "version": "1.0.0",
+  "description": "Napisz funkcje, w których wykorzystasz pętle for lub while w celu odwzorowania podanych niżej metod tablicowych:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gsylwia/array-methods.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gsylwia/array-methods/issues"
+  },
+  "homepage": "https://github.com/gsylwia/array-methods#readme"
+}
