@@ -14,8 +14,6 @@ const forEachFn = <T>(array: T[], callback: (T) => (void)) => {
     }
 };
 
-///////
-
 const sumByIndex = (number: number, index: number) => {
     return number + index;
 };
@@ -24,7 +22,7 @@ const mapFn = <ArrayType, ReturnType> (
     array: ArrayType[], 
     callback: (el :ArrayType, index?: number, array?: ArrayType[]) => ArrayType | ReturnType
     ) => {
-        // <union-type>[]
+
     const newArr: (ArrayType | ReturnType)[] = [];
 
     for (let i= 0; i < array.length; i++) {
@@ -36,17 +34,13 @@ const mapFn = <ArrayType, ReturnType> (
 
 console.log(mapFn(arr, (element, index) => element * index));
 
-/////// GENERATOR
+const entriesFn = <T>(array: T[]): (number | T)[][] => {
 
-function* entriesFn<T>(array: T[]) {
-    for (let i = 0; i < array.length; i++) {
-      yield [i];
-    }
+    const newArr = array.map((value: T, index: number) => [index , value]);
+    return newArr;
 }
 
-console.log(entriesFn(arr).next());
-
-///////
+console.log(entriesFn(arr));
 
 const filterFn = <T>(array: number[], callback: (T) => (boolean)) => {
 	
@@ -63,18 +57,38 @@ const filterFn = <T>(array: number[], callback: (T) => (boolean)) => {
     return newArr; 
 };
 
-filterFn(arr, (number) => (number % 2) === 0)
+console.log(filterFn(arr, (number) => (number % 2) === 0))
 
 
-// const reduceFn = (array, callback, initial) => {
+const addNum = (prev: number, current: number): number => {
+  return prev + current;
+};
 
-//     for (let i = 0; i < array.length; i++) {
-//         initial += array[i];
-//     }
-//      callback(initial)
-// };
+const reduceFn =  <ArrayType, ReturnType> (
+        array: ArrayType[], 
+        callback: (prev: ArrayType | ReturnType, current: ArrayType, index: number ) => ArrayType | ReturnType,
+        initial?: ArrayType | ReturnType
+        ) => {
 
-///////
+			let prev: ArrayType | ReturnType
+      let start: number 
+
+      if (initial) {
+        prev = initial;
+        start = 0;
+      } else {
+        prev = array[0];
+        start = 1;
+      }
+
+      for (let i = start; i < array.length; i++) {
+        	prev = callback(prev, array[i], i);
+      }
+    
+    return prev;
+};
+
+console.log(reduceFn(arr, addNum));
 
 const isEven = (num: number): boolean => num % 2 === 0;
 
@@ -89,8 +103,6 @@ const everyFn = <T>(array: T[], callback: (el: T) => boolean): boolean => {
 };
 
 console.log(everyFn(arr, isEven));
-
-///////
 
 const someFn = <T>(array: T[], callback: (el: T) => boolean): boolean => {
     for (let i = 0; i < array.length;  i++ ) {
